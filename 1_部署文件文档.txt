@@ -1,0 +1,62 @@
+
+1、MAVEN:
+	settings.xml，文件防止到conf中。
+	路径：C:\gongju\apache-maven-3.6.0-bin\apache-maven-3.6.0\conf
+		如果在官方下载一个全新的文件，需要写入 <localRepository>E:\mavenRepo</localRepository>
+			 <mirrors>
+				<!-- mirror
+				 | Specifies a repository mirror site to use instead of a given repository. The repository that
+				 | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
+				 | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
+				 |
+				<mirror>
+				  <id>mirrorId</id>
+				  <mirrorOf>repositoryId</mirrorOf>
+				  <name>Human Readable Name for this Mirror.</name>
+				  <url>http://my.repository.com/repo/path</url>
+				</mirror>
+				 -->
+				 <mirror>
+			　　<id>aliyun</id>
+			　　<name>aliyun Maven</name>
+			　　<mirrorOf>*</mirrorOf>
+				<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+				</mirror>
+		  </mirrors>
+		
+	mavenRepo：新建一个库文件夹，settings.xml文件中 得指定url到这个目录。
+		
+		
+2、mysql：
+		打开cmd，用管理员命令执行
+		输入mysql，出现错误。使用微软常用运行库合集_2019.07.20_X64。
+		将my.ini，放入到C:\gongju\mysql-8.0.20-winx64中。my.ini这里面要改路径。然后要编码格式不能是urf-8
+		开始走命令。
+		
+		1、mysqld --install   注册服务
+		2、mysqld --initialize 生成data
+		3、mysqld --initialize --console 生成随机密码
+		4、net start mysql 启动服务
+		5、mysql -u root -p 登录，复制随机密码
+		6、alter user 'root'@'localhost' identified by 'root'; 后面这个是新密码
+		7、use mysql;
+		alter user 'root'@'localhost' identified with mysql_native_password by 'root';
+		flush privileges;刷新权限
+		
+3、环境变量：
+	JAVA: 
+		新建JAVA_HOME 后面是路径 ，然后在path中 放入 %JAVA_HOME%\lib;
+	MAVEN:
+		新建MAVEN_HOME 后面是路径 ，然后在path中 放入 %MAVEN_HOME%\lib;
+	MYSQL:
+		新建MYSQL_HOME 后面是路径 ，然后在path中 放入 %MYSQL_HOME%\lib;
+		
+4、idea
+	先安装好环境变量：
+		运行：ideaIU-2019.1.3.exe
+		将jetbrains-agent.jar 放入到C盘
+		就点下一步安装，先30天试用。
+		在配置hosts C:\Windows\System32\drivers\etc   0.0.0.0 https://account.jetbrains.com:443
+		配置虚拟环境 -javaagent:c:\jetbrains-agent.jar
+		然后在从安装文件里面找到 激活码。点保存
+		
